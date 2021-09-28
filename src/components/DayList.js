@@ -5,7 +5,7 @@ export default function DayList(props) {
   const { days, day, setDay } = props;
   const daysArr = [];
   days.map((currentDay) => {
-    daysArr.push(
+    return daysArr.push(
       <DayListItem
         key={currentDay.id}
         name={currentDay.name}
