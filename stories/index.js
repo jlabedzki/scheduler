@@ -27,6 +27,12 @@ storiesOf("Button", module)
     </Button>
   ));
 
+const day = {
+  id: 1,
+  name: "Tuesdays",
+  spots: 5
+}
+
 storiesOf("DayListItem", module) //Initiates Storybook and registers our DayListItem component
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -35,7 +41,7 @@ storiesOf("DayListItem", module) //Initiates Storybook and registers our DayList
   .add("Selected", () => <DayListItem name="Monday" spots={5} selected />)
   .add("Full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
-    <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
+    <DayListItem name="Tuesday" setDay={() => action("setDay")(day.name)} spots={5} /> // action() allows us to create a callback that appears in the actions panel when clicked
   ));
 
 const days = [
