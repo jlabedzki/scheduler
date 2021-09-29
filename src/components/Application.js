@@ -31,7 +31,7 @@ const interviewers = [
 
 export default function Application(props) {
   const [day, setDay] = useState('Monday');
-  // const [interviewer, setInterviewer] = useState();
+  const [interviewer, setInterviewer] = useState();
 
 
   return (
@@ -46,8 +46,8 @@ export default function Application(props) {
         <nav className="sidebar__menu">
           <DayList
             days={days}
-            day={day}
-            setDay={setDay}
+            value={day}
+            onChange={setDay}
           />
         </nav>
         <img
@@ -56,11 +56,11 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />      </section>
       <section className="schedule">
-        {/* <InterviewerList
+        <InterviewerList
           interviewers={interviewers}
-          interviewer={interviewer}
-          setInterviewer={setInterviewer}
-        /> */}
+          value={interviewer}
+          onChange={setInterviewer}
+        />
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
       </section>
     </main>
