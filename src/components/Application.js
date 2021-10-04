@@ -67,7 +67,7 @@ export default function Application() {
       .then(() => {
         setState({...state, appointments});
       });
-  }
+  };
 
 
   return (
