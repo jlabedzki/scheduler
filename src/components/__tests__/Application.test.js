@@ -31,7 +31,7 @@ describe("Application", () => {
   });
   
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
-    const {container, debug} = render(<Application />);
+    const {container} = render(<Application />);
     
     await waitForElement(() => getByText(container, "Archie Cohen"));
 
@@ -55,7 +55,6 @@ describe("Application", () => {
     );
 
     expect(getByText(day, /no spots remaining/i)).toBeInTheDocument();
-    console.log(prettyDOM(day));
   });
 
 })
