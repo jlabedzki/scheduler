@@ -24,21 +24,27 @@ function reducer(state, action) {
 };
 
 export default function useApplicationData() {
+  //web socket connection
+  useEffect(() => {
+    const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    webSocket.onopen = () => webSocket.send('ping');
+    webSocket.onmessage = (event) => console.log(`Message received: ${event.data}`)
+  }, []);
 
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
     days: [],
     appointments: {},
     interviewers: {}
-  });
-  
-
+    });
+    
+    
   const setDay = day => dispatch({type: SET_DAY, value: {...state, day}});
-  
+    
   const updateSpots = (id, appointments) => {
     const newDays = [...state.days];
     let availableSpots = 0;
-
+      
     for (const day of newDays) {
       if (day.appointments.includes(id)) {
         for (const appointmentID of day.appointments) {
@@ -46,12 +52,12 @@ export default function useApplicationData() {
         }
         const index = newDays.indexOf(day);
         newDays[index].spots = availableSpots;
-      }
-    }  
+        }
+      }  
+      
+      return newDays;
+    }
     
-    return newDays;
-  }
-
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
