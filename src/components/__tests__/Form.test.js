@@ -29,7 +29,7 @@ describe("Form", () => {
     //initialize mock save function
     const onSave = jest.fn();
 
-    const { getByText } = render(<Form name interviewers={interviewers} onSave={onSave} />);
+    const { getByText } = render(<Form name="" interviewers={interviewers} onSave={onSave} />);
 
     //click save button
     fireEvent.click(getByText("Save"))
