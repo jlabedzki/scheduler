@@ -95,10 +95,9 @@ export default function useApplicationData() {
     
     
   const setDay = day => dispatch({type: SET_DAY, value: {...state, day}});
-    
-    
+  
 
-  const bookInterview = (id, interview) => {
+  const bookInterview = async (id, interview) => {
     const appointment = {
       ...state.appointments[id],
       interview: {...interview}
@@ -109,21 +108,21 @@ export default function useApplicationData() {
       [id]: appointment
     };
 
-    return axios.put(`/api/appointments/${id}`, {interview})
-      .then(() => {
-        const days = updateSpots(id, appointments);
-        dispatch({
-          type: SET_INTERVIEW,
-          value: {
-            ...state,
-            appointments,
-            days
-          }
-        });
-      });
+    const days = updateSpots(id, appointments);
+
+    await axios.put(`/api/appointments/${id}`, {interview})
+    
+    dispatch({
+      type: SET_INTERVIEW,
+      value: {
+        ...state,
+        appointments,
+        days
+      }
+    });
   };
 
-  const cancelInterview = id => {
+  const cancelInterview = async id => {
     const appointment = {
       ...state.appointments[id],
       interview: null
@@ -133,19 +132,19 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
+    const days = updateSpots(id, appointments);
 
-    return axios.delete(`/api/appointments/${id}`)
-      .then(() => {
-        const days = updateSpots(id, appointments);
-        dispatch({
-          type: SET_INTERVIEW,
-          value: {
-            ...state,
-            appointments,
-            days
-          }
-        });
-      });
+    await axios.delete(`/api/appointments/${id}`)
+      
+    dispatch({
+      type: SET_INTERVIEW,
+      value: {
+        ...state,
+        appointments,
+        days
+      }
+    });
+      
   };
 
   return {
