@@ -51,7 +51,8 @@ export default function Application() {
           className="sidebar__lhl sidebar--centered"
           src="images/lhl.png"
           alt="Lighthouse Labs"
-        />      </section>
+        />
+      </section>
       <section className="schedule">
         {dailyAppointments}
         <Appointment key="last" time="5pm" />
