@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 
 import { 
   render, 
@@ -115,8 +116,36 @@ describe("Application", () => {
     expect(getByText(day, /1 spot remaining/i)).toBeInTheDocument();
   });
 
-  xit("shows the save error when failing to save an appointment", async () => {
+  it("shows the save error when failing to save an appointment", async () => {
+    axios.put.mockRejectedValueOnce();
 
+    const {container} = render(<Application />);
+    
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments[0];
+
+    //click the add button on the first empty appointment
+    fireEvent.click(getByAltText(appointment, "Add"));
+
+    //change the name value to "Lydia Miller-Jones"
+    fireEvent.change(getByPlaceholderText(appointment, /Enter student name/i), { 
+      target: { value: "Lydia Miller-Jones" } 
+    });
+
+    //select an interviewer
+    fireEvent.click(getByAltText(appointment, "Sylvia Palmer"));
+
+    //click the save button -- this should result in an error due to the mockRejectedValueOnce invocation up above
+    fireEvent.click(getByText(appointment, "Save"));
+    expect(getByText(appointment, "Saving")).toBeInTheDocument();
+
+    //wait for the SAVING mode to finish
+    await waitForElementToBeRemoved(() => (getByText(appointment, "Saving")));
+
+    //check to see that the save error message is displayed
+    expect(getByText(appointment, /appointment could not be saved/i)).toBeInTheDocument();
   });
 
   xit("shows the delete error when failing to delete an existing appointment", async () => {
