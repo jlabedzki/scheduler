@@ -148,8 +148,33 @@ describe("Application", () => {
     expect(getByText(appointment, /appointment could not be saved/i)).toBeInTheDocument();
   });
 
-  xit("shows the delete error when failing to delete an existing appointment", async () => {
+  it("shows the delete error when failing to delete an existing appointment", async () => {
+    axios.delete.mockRejectedValueOnce();
 
+    const {container} = render(<Application />)
+
+    await waitForElement(() => getByText(container, "Archie Cohen"));
+
+    const appointments = getAllByTestId(container, "appointment");
+    const appointment = appointments[1];
+
+    //click the delete button on the appointment with Archie Cohen
+    fireEvent.click(getByAltText(appointment, "Delete"));
+
+    //check that the confirmation message is shown
+    expect(getByText(appointment, /are you sure you would like to delete this appointment?/i)).toBeInTheDocument();
+
+    //click the confirm button on the confirm element
+    fireEvent.click(getByText(appointment, "Confirm"));
+
+    //check that the element with the text "deleting" is dipslayed
+    expect(getByText(appointment, "Deleting")).toBeInTheDocument();
+
+    //wait for the DELETING mode to finish
+    await waitForElementToBeRemoved(() => (getByText(appointment, "Deleting")));
+
+   //check to see that the delete error message is displayed
+   expect(getByText(appointment, /appointment could not be deleted/i)).toBeInTheDocument();
   });
 
 })
