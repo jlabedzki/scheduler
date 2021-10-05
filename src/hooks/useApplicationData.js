@@ -24,23 +24,12 @@ function reducer(state, action) {
 };
 
 export default function useApplicationData() {
-  //web socket connection
-  useEffect(() => {
-    const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
-    webSocket.onopen = () => webSocket.send('ping');
-    webSocket.onmessage = (event) => console.log(`Message received: ${event.data}`)
-  }, []);
-
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday",
     days: [],
     appointments: {},
     interviewers: {}
-    });
-    
-    
-  const setDay = day => dispatch({type: SET_DAY, value: {...state, day}});
-    
+  });
   const updateSpots = (id, appointments) => {
     const newDays = [...state.days];
     let availableSpots = 0;
@@ -55,9 +44,9 @@ export default function useApplicationData() {
         }
       }  
       
-      return newDays;
-    }
-    
+    return newDays;
+  }
+  
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -75,7 +64,37 @@ export default function useApplicationData() {
           }
         });
       });
+      
   }, []);
+
+  // web socket connection
+  useEffect(() => {
+    const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    webSocket.onopen = () => webSocket.send("ping");
+    //update all socket connections when a user creates/deletes an appointment
+    webSocket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+   
+      const id = data.id
+     
+      const appointment = {
+        ...state.appointments[id],
+        interview: {...data.interview}
+      };
+      const appointments = {
+        ...state.appointments,
+        [id]: appointment
+      }
+      const days = updateSpots(id, appointments);
+      dispatch({type: SET_INTERVIEW, value: {...state, appointments, days}});
+    }
+  }, []);
+
+    
+    
+  const setDay = day => dispatch({type: SET_DAY, value: {...state, day}});
+    
+    
 
   const bookInterview = (id, interview) => {
     const appointment = {
@@ -120,7 +139,8 @@ export default function useApplicationData() {
           type: SET_INTERVIEW,
           value: {
             ...state,
-            appointments, days
+            appointments,
+            days
           }
         });
       });
