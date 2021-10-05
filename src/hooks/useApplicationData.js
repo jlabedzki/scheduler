@@ -68,27 +68,29 @@ export default function useApplicationData() {
   }, []);
 
   // web socket connection
-  useEffect(() => {
-    const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
-    webSocket.onopen = () => webSocket.send("ping");
+  // useEffect(() => {
+  //   const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    // webSocket.onopen = () => webSocket.send(JSON.stringify(state));
     //update all socket connections when a user creates/deletes an appointment
-    webSocket.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-   
-      const id = data.id
+    // webSocket.onmessage = (event) => {
+    //   const data = JSON.parse(event.data);
+      
+    //   const id = data.id
      
-      const appointment = {
-        ...state.appointments[id],
-        interview: {...data.interview}
-      };
-      const appointments = {
-        ...state.appointments,
-        [id]: appointment
-      }
-      const days = updateSpots(id, appointments);
-      dispatch({type: SET_INTERVIEW, value: {...state, appointments, days}});
-    }
-  }, []);
+    //   const appointment = {
+    //     ...state.appointments[id],
+    //     interview: {...data.interview}
+    //   };
+
+    //   const appointments = {
+    //     ...state.appointments,
+    //     [id]: appointment
+    //   };
+
+    //   const days = updateSpots(id, appointments);
+      // dispatch({type: SET_INTERVIEW, value: {...state, appointments, days}});
+    // }
+  // }, []);
 
     
     
