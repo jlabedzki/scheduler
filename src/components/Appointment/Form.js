@@ -19,7 +19,7 @@ export default function Form(props) {
     //   setError("Please select an interviewer")
     //   return;
     // }
-
+    // setError("");
     onSave(name, interviewer);
   };
 
@@ -60,7 +60,7 @@ export default function Form(props) {
       <section className="appointment__card-right">
         <section className="appointment__actions">
           <Button onClick={cancel} danger>Cancel</Button>
-          <Button onClick={() => validate()} confirm>Save</Button>
+          <Button onClick={validate} confirm>Save</Button>
         </section>
       </section>
     </main>
