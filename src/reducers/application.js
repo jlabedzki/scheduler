@@ -13,9 +13,10 @@ export default function reducer(state, action) {
     case SET_INTERVIEW: {
       return action.value;
     }
-    default:
+    default: {
       throw new Error(
         `Tried to reduce with unsupported action type: ${action.type}`
         );
-      }
+    }
+  }
 };
