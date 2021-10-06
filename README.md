@@ -29,3 +29,13 @@ NOTE: Loading the initial schedule may take a while as the app is hosted on free
 Head over to https://lhl-student-mentor-scheduler.netlify.app/ to get started!
 
 ## Final Product
+
+!["Navigating list of days"](https://github.com/jlabedzki/scheduler/blob/master/docs/Navigate%20days.gif?raw=true)
+
+!["Booking an appointment"](https://github.com/jlabedzki/scheduler/blob/master/docs/Book%20appointment.gif?raw=true)
+
+!["Editing an appointment"](https://github.com/jlabedzki/scheduler/blob/master/docs/Edit%20appointment.gif?raw=true)
+
+!["Cancelling an appointment"](https://github.com/jlabedzki/scheduler/blob/master/docs/Delete%20appointment.gif?raw=true)
+
+!["WebSocket functionality"](https://github.com/jlabedzki/scheduler/blob/master/docs/WebSocket%20functionality.gif?raw=true)
