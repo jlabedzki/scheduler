@@ -71,6 +71,10 @@ In the scheduler-api repo:
 - `npm start` will start the api server
 - `npm run error` will start the api server in error mode, use this to test error handling in the project
 
+Configuring the database:
+
+- Follow the instructions in the scheduler-api's README file
+
 ## Dependencies
 
 Scheduler:
