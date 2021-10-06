@@ -1,23 +1,31 @@
 # Interview Scheduler
 
-## Setup
+Interview Scheduler is a single-page application where users can navigate through a list of days and book, edit, or cancel appointments with a list of available mentors. The app updates schedule information in real-time for concurrent users via WebSockets.
 
-Install dependencies with `npm install`.
+This project was made using:
 
-## Running Webpack Development Server
+- Front end:
+  - React
+- Back end:
+- Hosting/deployment:
+  - Heroku (server API)
+  - CircleCI (production app)
+  - Netlify (production app)
+- Testing:
+  - Jest
+  - React testing library
+  - Cypress
 
-```sh
-npm start
-```
+## Purpose
 
-## Running Jest Test Framework
+BEWARE: This project was built for learning purposes. It is not intended for use in production-grade software.
 
-```sh
-npm test
-```
+This project was created and published as part of my learnings at Lighthouse Labs.
 
-## Running Storybook Visual Testbed
+## View Live Demo
 
-```sh
-npm run storybook
-```
+NOTE: Loading the initial schedule may take a while as the app is hosted on free Heroku account, meaning the app will sleep after 30 minutes of idleness.
+
+Head over to https://lhl-student-mentor-scheduler.netlify.app/ to get started!
+
+## Final Product
