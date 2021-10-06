@@ -12,7 +12,7 @@ import {
   getAllByTestId,
   getByAltText,
   getByPlaceholderText, 
-  prettyDOM 
+  prettyDOM
 } from "@testing-library/react";
 
 import Application from "components/Application";
