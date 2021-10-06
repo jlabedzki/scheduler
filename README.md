@@ -49,3 +49,66 @@ Head over to https://lhl-student-mentor-scheduler.netlify.app/ to get started!
 !["Cancelling an appointment"](https://github.com/jlabedzki/scheduler/blob/master/docs/Delete%20appointment.gif?raw=true)
 
 !["WebSocket functionality"](https://github.com/jlabedzki/scheduler/blob/master/docs/WebSocket%20functionality.gif?raw=true)
+
+## Setup
+
+Clone both of the following repos via these commands:
+
+- `git clone git@github.com:jlabedzki/scheduler.git`
+- `git clone git@github.com:jlabedzki/scheduler-api.git`
+
+Install dependencies with the command `npm install` for each of the repositories.
+
+In the scheduler repo:
+
+- `npm start` will start the WebPack development server
+- `npm test` will start the Jest testing framework
+- `npm run storybook` will launch Storybook
+- `npm run cypress` will launch Cypress
+
+In the scheduler-api repo:
+
+- `npm start` will start the api server
+- `npm run error` will start the api server in error mode, use this to test error handling in the project
+
+## Dependencies
+
+Scheduler:
+
+- Production:
+  - axios
+  - classnames
+  - normalize.css
+  - react
+  - react-dom
+  - react-scripts
+- Development:
+  - @babel/core
+  - @storybook/addon-actions
+  - @storybook/addon-backgrounds
+  - @storybook/addon-links
+  - @storybook/addon
+  - @storybook/react
+  - @testing-library/jest-dom
+  - @testing-library/react
+  - @testing-library/react-hooks
+  - babel-loader
+  - cypress
+  - node-sass
+  - prop-types
+  - react-test-renderer
+
+Scheduler-api:
+
+- Production:
+  - body-parser
+  - cors
+  - dotenv
+  - express
+  - helmet
+  - pg
+  - socket.io
+  - ws
+- Development:
+  - jest
+  - supertest
