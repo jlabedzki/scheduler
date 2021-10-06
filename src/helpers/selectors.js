@@ -1,5 +1,5 @@
 export function getAppointmentsForDay(state, day) {
-  const filteredDays = state.days.filter(element => element.name === day);
+  const filteredDays = state.days.filter(({name}) => name === day);
 
   if (filteredDays.length > 0) {
     const appointments = filteredDays[0].appointments;
@@ -18,7 +18,7 @@ export function getAppointmentsForDay(state, day) {
 };
 
 export function getInterviewersForDay(state, day) {
-  const filteredDays = state.days.filter(element => element.name === day);
+  const filteredDays = state.days.filter(({name}) => name === day);
 
   if (filteredDays.length > 0) {
     const interviews = filteredDays[0].interviewers;
@@ -37,13 +37,11 @@ export function getInterviewersForDay(state, day) {
 }
 
 export function getInterview(state, interview) {
-  const interviewers = Object.keys(state.interviewers);
-
   if (!interview) {
     return null;
   }
 
-  if (interviewers.includes(`${interview.interviewer}`)) {
+  if(interview.interviewer) {
     return {
       student: interview.student,
       interviewer: state.interviewers[interview.interviewer]
