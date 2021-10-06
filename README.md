@@ -6,14 +6,24 @@ This project was made using:
 
 - Front end:
   - React
+  - SASS
+  - WebPack
+  - Babel
+  - Axios
 - Back end:
+  - Node.js
+  - Express
+  - PostgreSQL
+  - WebSockets
 - Hosting/deployment:
   - Heroku (server API)
   - CircleCI (production app)
   - Netlify (production app)
-- Testing:
+- Testing/development:
+  - Storybook
   - Jest
   - React testing library
+  - WebPack Dev Server
   - Cypress
 
 ## Purpose
