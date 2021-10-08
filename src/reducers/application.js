@@ -40,16 +40,16 @@ const setInterview = (state, action) => {
 };
 
 const updateSpots = (state, id, appointments) => {
-  const newDays = [...state.days];
+  const newDays = [];
   let availableSpots = 0;
 
-  for (const day of newDays) {
+  for (const day of state.days) {
     if (day.appointments.includes(id)) {
       for (const appointmentID of day.appointments) {
         if (appointments[appointmentID].interview === null) availableSpots++;
       }
-      const index = newDays.indexOf(day);
-      newDays[index].spots = availableSpots;
+
+      newDays.push({...day, spots: availableSpots});
     }
   }
 
