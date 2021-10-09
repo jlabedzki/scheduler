@@ -48,9 +48,8 @@ const updateSpots = (state, id, appointments) => {
       for (const appointmentID of day.appointments) {
         if (appointments[appointmentID].interview === null) availableSpots++;
       }
-
-      newDays.push({...day, spots: availableSpots});
     }
+    newDays.push({...day, spots: availableSpots});
   }
 
   return newDays;
